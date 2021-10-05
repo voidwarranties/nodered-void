@@ -133,51 +133,6 @@
         ]
     },
     {
-        "id": "d5cfa0af27bf3654",
-        "type": "change",
-        "z": "93090032383d5199",
-        "name": "Remove clutter",
-        "rules": [
-            {
-                "t": "delete",
-                "p": "headers",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "topic",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "statusCode",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "responseUrl",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "redirectList",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 540,
-        "y": 120,
-        "wires": [
-            [
-                "b77232e3987b62c7"
-            ]
-        ]
-    },
-    {
         "id": "296a7482f0747f35",
         "type": "influxdb out",
         "z": "93090032383d5199",
