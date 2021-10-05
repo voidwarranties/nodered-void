@@ -34,24 +34,6 @@
         "rejectUnauthorized": true
     },
     {
-        "id": "6a26a3d2d2afa848",
-        "type": "inject",
-        "z": "93090032383d5199",
-        "name": "EVERY 5 SEC",
-        "props": [],
-        "repeat": "5",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "str",
-        "x": 120,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "0346e17347c6014f",
         "type": "inject",
         "z": "93090032383d5199",
