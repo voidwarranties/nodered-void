@@ -34,6 +34,27 @@
         "rejectUnauthorized": true
     },
     {
+        "id": "415b0e1eb288f84e",
+        "type": "http request",
+        "z": "93090032383d5199",
+        "name": "CoinGecko",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,nano&vs_currencies=usd,eur",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "d5cfa0af27bf3654"
+            ]
+        ]
+    },
+    {
         "id": "6a26a3d2d2afa848",
         "type": "inject",
         "z": "93090032383d5199",
@@ -48,7 +69,9 @@
         "x": 120,
         "y": 120,
         "wires": [
-            []
+            [
+                "415b0e1eb288f84e"
+            ]
         ]
     },
     {
@@ -65,7 +88,9 @@
         "x": 90,
         "y": 60,
         "wires": [
-            []
+            [
+                "415b0e1eb288f84e"
+            ]
         ]
     },
     {
