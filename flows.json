@@ -69,25 +69,6 @@
         ]
     },
     {
-        "id": "b77232e3987b62c7",
-        "type": "split",
-        "z": "93090032383d5199",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "measurement",
-        "x": 710,
-        "y": 120,
-        "wires": [
-            [
-                "d47908a188bfff15"
-            ]
-        ]
-    },
-    {
         "id": "1bd2cfc393ad473f",
         "type": "debug",
         "z": "93090032383d5199",
