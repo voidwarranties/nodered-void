@@ -233,8 +233,24 @@
         "y": 100,
         "wires": [
             [
-                "a19ffe0.62476"
+                "a19ffe0.62476",
+                "10585dfb.3e127a"
             ]
         ]
+    },
+    {
+        "id": "10585dfb.3e127a",
+        "type": "debug",
+        "z": "5c7a661f544dc51d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 280,
+        "y": 160,
+        "wires": []
     }
 ]
