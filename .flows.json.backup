@@ -3,14 +3,14 @@
         "id": "5c7a661f544dc51d",
         "type": "tab",
         "label": "Space State - Temp & Humidity",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "6ae9ae02ccd4803a",
         "type": "tab",
         "label": "Space State - Open/Close",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
