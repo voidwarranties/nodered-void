@@ -260,7 +260,7 @@
         "retain": "false",
         "broker": "3539746d.759aec",
         "x": 660,
-        "y": 120,
+        "y": 240,
         "wires": []
     },
     {
@@ -277,7 +277,8 @@
         "wires": [
             [
                 "3c7e383b6bbc7785",
-                "2ee6eb8a0a213a74"
+                "2ee6eb8a0a213a74",
+                "ddef6f804bf3eb4d"
             ]
         ]
     },
@@ -285,7 +286,7 @@
         "id": "3c7e383b6bbc7785",
         "type": "change",
         "z": "6ae9ae02ccd4803a",
-        "name": "",
+        "name": "Set on/off",
         "rules": [
             {
                 "t": "set",
@@ -300,11 +301,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 380,
+        "x": 360,
         "y": 60,
         "wires": [
             [
-                "c5105954f0706ba3"
+                "c5105954f0706ba3",
+                "855181d3a30999a2"
             ]
         ]
     },
@@ -328,7 +330,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 120,
+        "y": 240,
         "wires": [
             [
                 "328c1e27e1ebd117"
@@ -346,7 +348,7 @@
         "sendError": false,
         "encoding": "none",
         "x": 460,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "8999d558893bc2f0"
@@ -364,7 +366,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 390,
-        "y": 240,
+        "y": 320,
         "wires": [
             [
                 "2729e191657e0f94"
@@ -384,7 +386,7 @@
         "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\"}",
         "payloadType": "json",
         "x": 150,
-        "y": 240,
+        "y": 320,
         "wires": [
             [
                 "f23d872eadfbfddf"
@@ -403,7 +405,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 570,
-        "y": 240,
+        "y": 320,
         "wires": []
     },
     {
@@ -418,7 +420,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 970,
-        "y": 240,
+        "y": 320,
         "wires": []
     },
     {
@@ -430,7 +432,7 @@
         "action": "",
         "pretty": false,
         "x": 650,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "17f455359fdded2c"
@@ -448,7 +450,7 @@
         "interval": 100,
         "name": "",
         "x": 990,
-        "y": 300,
+        "y": 380,
         "wires": []
     },
     {
@@ -471,7 +473,7 @@
         "to": "",
         "reg": false,
         "x": 810,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "9be94bddb27f11e3",
@@ -489,7 +491,7 @@
         "datatype": "utf8",
         "broker": "3539746d.759aec",
         "x": 110,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "c0cff6626d30a21b"
@@ -514,11 +516,74 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 300,
+        "y": 380,
         "wires": [
             [
                 "3758950e49922b9c"
             ]
         ]
+    },
+    {
+        "id": "855181d3a30999a2",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER2",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 740,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ddef6f804bf3eb4d",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set inverted on/off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"off\" : \"on\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "70c5cceefad4cd0b"
+            ]
+        ]
+    },
+    {
+        "id": "70c5cceefad4cd0b",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER1",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 740,
+        "y": 180,
+        "wires": []
     }
 ]

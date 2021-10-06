@@ -10,7 +10,7 @@
         "id": "6ae9ae02ccd4803a",
         "type": "tab",
         "label": "Space State - Open/Close",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -236,5 +236,354 @@
                 "a19ffe0.62476"
             ]
         ]
+    },
+    {
+        "id": "c5105954f0706ba3",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "logo/cmnd/POWER1",
+        "qos": "0",
+        "retain": "false",
+        "broker": "3539746d.759aec",
+        "x": 660,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "328c1e27e1ebd117",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "computers/barputer01",
+        "qos": "0",
+        "retain": "false",
+        "broker": "3539746d.759aec",
+        "x": 660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "f655300218da951f",
+        "type": "mqtt in",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "environment/dht",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "3539746d.759aec",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "3c7e383b6bbc7785",
+                "2ee6eb8a0a213a74",
+                "ddef6f804bf3eb4d"
+            ]
+        ]
+    },
+    {
+        "id": "3c7e383b6bbc7785",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set on/off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"on\" : \"off\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "c5105954f0706ba3",
+                "855181d3a30999a2"
+            ]
+        ]
+    },
+    {
+        "id": "2ee6eb8a0a213a74",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"poweron\" : \"poweroff\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "328c1e27e1ebd117"
+            ]
+        ]
+    },
+    {
+        "id": "3758950e49922b9c",
+        "type": "file in",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Load MACs from file",
+        "filename": "macs",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "8999d558893bc2f0"
+            ]
+        ]
+    },
+    {
+        "id": "f23d872eadfbfddf",
+        "type": "file",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Save MACs to file",
+        "filename": "macs",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "2729e191657e0f94"
+            ]
+        ]
+    },
+    {
+        "id": "ae7d0eff356c503e",
+        "type": "inject",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Create MAC-address list",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "f23d872eadfbfddf"
+            ]
+        ]
+    },
+    {
+        "id": "2729e191657e0f94",
+        "type": "debug",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 570,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "596d8742f0918447",
+        "type": "debug",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 970,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8999d558893bc2f0",
+        "type": "json",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "17f455359fdded2c"
+            ]
+        ]
+    },
+    {
+        "id": "9be94bddb27f11e3",
+        "type": "wake on lan",
+        "z": "6ae9ae02ccd4803a",
+        "mac": "",
+        "host": "",
+        "udpport": 9,
+        "numpackets": 3,
+        "interval": 100,
+        "name": "",
+        "x": 990,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "17f455359fdded2c",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mac",
+                "pt": "msg",
+                "to": "$lookup(payload, $substringAfter(topic, \"/\"))",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "9be94bddb27f11e3",
+                "596d8742f0918447"
+            ]
+        ]
+    },
+    {
+        "id": "d262ef90f7518673",
+        "type": "mqtt in",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "computers/#",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "3539746d.759aec",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "c0cff6626d30a21b"
+            ]
+        ]
+    },
+    {
+        "id": "c0cff6626d30a21b",
+        "type": "switch",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "poweron",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "3758950e49922b9c"
+            ]
+        ]
+    },
+    {
+        "id": "855181d3a30999a2",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER2",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 740,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ddef6f804bf3eb4d",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set inverted on/off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"off\" : \"on\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "70c5cceefad4cd0b"
+            ]
+        ]
+    },
+    {
+        "id": "70c5cceefad4cd0b",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER1",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 740,
+        "y": 180,
+        "wires": []
     }
 ]
