@@ -305,8 +305,7 @@
         "y": 60,
         "wires": [
             [
-                "c5105954f0706ba3",
-                "855181d3a30999a2"
+                "c5105954f0706ba3"
             ]
         ]
     },
@@ -378,12 +377,21 @@
         "type": "inject",
         "z": "6ae9ae02ccd4803a",
         "name": "Create MAC-address list",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\"}",
+        "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\",\"stargazer\":\"ec:a8:6b:8b:e6:b0\"}",
         "payloadType": "json",
         "x": 150,
         "y": 320,
