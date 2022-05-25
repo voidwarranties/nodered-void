@@ -14,31 +14,11 @@
         "info": ""
     },
     {
-        "id": "d50d0c9f.31e858",
-        "type": "tls-config",
-        "name": "",
-        "cert": "",
-        "key": "",
-        "ca": "",
-        "certname": "",
-        "keyname": "",
-        "caname": "",
-        "servername": "",
-        "verifyservercert": false
-    },
-    {
-        "id": "6b38719.5d9131",
-        "type": "influxdb",
-        "hostname": "127.0.0.1",
-        "port": "8086",
-        "protocol": "http",
-        "database": "crypto",
-        "name": "",
-        "usetls": false,
-        "tls": "d50d0c9f.31e858",
-        "influxdbVersion": "1.x",
-        "url": "http://localhost:8086",
-        "rejectUnauthorized": true
+        "id": "32cb8da3.eeffc2",
+        "type": "tab",
+        "label": "Sun Events",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "550bc608.2b8b78",
@@ -59,6 +39,7 @@
         "broker": "10.98.71.71",
         "port": "1883",
         "clientid": "",
+        "autoConnect": true,
         "usetls": false,
         "compatmode": false,
         "protocolVersion": "4",
@@ -79,6 +60,13 @@
         "sessionExpiry": ""
     },
     {
+        "id": "88dfa43f7c3eb225",
+        "type": "Cache",
+        "name": "cache",
+        "defaultTtl": "",
+        "checkPeriod": ""
+    },
+    {
         "id": "2863b1fc.6af24e",
         "type": "influxdb out",
         "z": "5c7a661f544dc51d",
@@ -87,7 +75,7 @@
         "measurement": "dht",
         "precision": "s",
         "retentionPolicy": "",
-        "x": 720,
+        "x": 580,
         "y": 40,
         "wires": []
     },
@@ -100,6 +88,7 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "inputs": 0,
         "x": 140,
         "y": 40,
         "wires": [
@@ -116,7 +105,7 @@
         "func": "msg.payload = [msg.payload,\n{name: \"dht1\"}]\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 460,
+        "x": 380,
         "y": 40,
         "wires": [
             [
@@ -133,6 +122,7 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "inputs": 0,
         "x": 120,
         "y": 200,
         "wires": [
@@ -150,7 +140,7 @@
         "measurement": "state",
         "precision": "s",
         "retentionPolicy": "",
-        "x": 720,
+        "x": 580,
         "y": 200,
         "wires": []
     },
@@ -185,7 +175,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
+        "x": 380,
         "y": 100,
         "wires": [
             [
@@ -212,7 +202,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
+        "x": 380,
         "y": 200,
         "wires": [
             [
@@ -229,6 +219,7 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "inputs": 0,
         "x": 130,
         "y": 100,
         "wires": [
@@ -246,7 +237,7 @@
         "qos": "0",
         "retain": "false",
         "broker": "3539746d.759aec",
-        "x": 660,
+        "x": 860,
         "y": 60,
         "wires": []
     },
@@ -259,8 +250,8 @@
         "qos": "0",
         "retain": "false",
         "broker": "3539746d.759aec",
-        "x": 660,
-        "y": 240,
+        "x": 860,
+        "y": 300,
         "wires": []
     },
     {
@@ -272,13 +263,15 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "inputs": 0,
         "x": 120,
         "y": 60,
         "wires": [
             [
                 "3c7e383b6bbc7785",
                 "2ee6eb8a0a213a74",
-                "ddef6f804bf3eb4d"
+                "3134f2063674370f",
+                "01e5fde574225c69"
             ]
         ]
     },
@@ -329,7 +322,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 240,
+        "y": 300,
         "wires": [
             [
                 "328c1e27e1ebd117"
@@ -347,7 +340,7 @@
         "sendError": false,
         "encoding": "none",
         "x": 460,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "8999d558893bc2f0"
@@ -365,7 +358,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 390,
-        "y": 320,
+        "y": 440,
         "wires": [
             [
                 "2729e191657e0f94"
@@ -386,15 +379,15 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "82800",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "10",
         "topic": "",
         "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\",\"stargazer\":\"ec:a8:6b:8b:e6:b0\"}",
         "payloadType": "json",
         "x": 150,
-        "y": 320,
+        "y": 440,
         "wires": [
             [
                 "f23d872eadfbfddf"
@@ -407,13 +400,15 @@
         "z": "6ae9ae02ccd4803a",
         "name": "",
         "active": false,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 320,
+        "complete": "\"Updated mac list\"",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 440,
         "wires": []
     },
     {
@@ -428,7 +423,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 970,
-        "y": 320,
+        "y": 440,
         "wires": []
     },
     {
@@ -440,7 +435,7 @@
         "action": "",
         "pretty": false,
         "x": 650,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "17f455359fdded2c"
@@ -458,7 +453,7 @@
         "interval": 100,
         "name": "",
         "x": 990,
-        "y": 380,
+        "y": 500,
         "wires": []
     },
     {
@@ -481,7 +476,7 @@
         "to": "",
         "reg": false,
         "x": 810,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "9be94bddb27f11e3",
@@ -498,8 +493,9 @@
         "qos": "2",
         "datatype": "utf8",
         "broker": "3539746d.759aec",
+        "inputs": 0,
         "x": 110,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "c0cff6626d30a21b"
@@ -524,7 +520,7 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "3758950e49922b9c"
@@ -545,36 +541,9 @@
         "correl": "",
         "expiry": "",
         "broker": "3539746d.759aec",
-        "x": 740,
+        "x": 940,
         "y": 120,
         "wires": []
-    },
-    {
-        "id": "ddef6f804bf3eb4d",
-        "type": "change",
-        "z": "6ae9ae02ccd4803a",
-        "name": "Set inverted on/off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.state ? \"off\" : \"on\"",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 390,
-        "y": 180,
-        "wires": [
-            [
-                "70c5cceefad4cd0b"
-            ]
-        ]
     },
     {
         "id": "70c5cceefad4cd0b",
@@ -590,8 +559,263 @@
         "correl": "",
         "expiry": "",
         "broker": "3539746d.759aec",
-        "x": 740,
+        "x": 940,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0167714cb4ec0fdf",
+        "type": "Cache out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "State",
+        "cache": "88dfa43f7c3eb225",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "payload",
+        "ttlType": "msg",
+        "ttlProperty": "",
+        "useString": false,
+        "x": 510,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3134f2063674370f",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$boolean(payload.state)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "state",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "nightTopic",
+                "pt": "msg",
+                "to": "night",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "0167714cb4ec0fdf",
+                "d5ebd20ad125a556"
+            ]
+        ]
+    },
+    {
+        "id": "01e5fde574225c69",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set inverted on/off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"off\" : \"on\"",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "night",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "70c5cceefad4cd0b"
+            ]
+        ]
+    },
+    {
+        "id": "d5ebd20ad125a556",
+        "type": "Cache in",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Night",
+        "cache": "88dfa43f7c3eb225",
+        "keyType": "msg",
+        "keyProperty": "nightTopic",
+        "valueType": "msg",
+        "valueProperty": "night",
+        "useString": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "4a40fddf1ecd06b9"
+            ]
+        ]
+    },
+    {
+        "id": "4a40fddf1ecd06b9",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set on/off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "(payload and night) ? \"on\" : \"off\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 120,
+        "wires": [
+            [
+                "855181d3a30999a2"
+            ]
+        ]
+    },
+    {
+        "id": "067c3b4800e20304",
+        "type": "inject",
+        "z": "32cb8da3.eeffc2",
+        "name": "Start & set coordinates",
+        "props": [
+            {
+                "p": "payload.latitude",
+                "v": "51.2",
+                "vt": "num"
+            },
+            {
+                "p": "payload.longitude",
+                "v": "4.45",
+                "vt": "num"
+            }
+        ],
+        "repeat": "43200",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "x": 170,
+        "y": 60,
+        "wires": [
+            [
+                "bb453a1268c52e68"
+            ]
+        ]
+    },
+    {
+        "id": "bb453a1268c52e68",
+        "type": "sun events",
+        "z": "32cb8da3.eeffc2",
+        "testmode": false,
+        "verbose": "N",
+        "topic": "",
+        "name": "",
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "ed35eb83075dc9e7"
+            ]
+        ]
+    },
+    {
+        "id": "3ac7f1eaa23ce25c",
+        "type": "Cache out",
+        "z": "32cb8da3.eeffc2",
+        "name": "Night",
+        "cache": "88dfa43f7c3eb225",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "payload",
+        "ttlType": "msg",
+        "ttlProperty": "",
+        "useString": false,
+        "x": 790,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ed35eb83075dc9e7",
+        "type": "change",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "night",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "(payload.sunevent = \"sunsetStart\") or\t(payload.sunevent = \"sunset\") or\t(payload.sunevent = \"dusk\") or\t(payload.sunevent = \"nauticalDusk\") or\t(payload.sunevent = \"night\") or\t(payload.sunevent = \"nadir\") or\t(payload.sunevent = \"nightEnd\") or\t(payload.sunevent = \"nauticalDawn\") or\t(payload.sunevent = \"dawn\")\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 60,
+        "wires": [
+            [
+                "4dabf8b786444e67",
+                "3ac7f1eaa23ce25c"
+            ]
+        ]
+    },
+    {
+        "id": "4dabf8b786444e67",
+        "type": "debug",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "\"night: \" & payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 120,
         "wires": []
     }
 ]
