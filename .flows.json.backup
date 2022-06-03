@@ -21,11 +21,12 @@
         "info": ""
     },
     {
-        "id": "80df3061.aa44d",
+        "id": "600e0f75f0d2b442",
         "type": "tab",
-        "label": "HAL9000",
+        "label": "Ventilate",
         "disabled": false,
-        "info": ""
+        "info": "",
+        "env": []
     },
     {
         "id": "550bc608.2b8b78",
@@ -72,37 +73,6 @@
         "name": "cache",
         "defaultTtl": "",
         "checkPeriod": ""
-    },
-    {
-        "id": "5b117459cf47e677",
-        "type": "discord-token",
-        "name": "Discord"
-    },
-    {
-        "id": "c4d61c684681e109",
-        "type": "mqtt-broker",
-        "name": "localhost",
-        "broker": "localhost",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
     },
     {
         "id": "2863b1fc.6af24e",
@@ -160,6 +130,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 120,
         "y": 200,
@@ -857,124 +829,132 @@
         "wires": []
     },
     {
-        "id": "b046f00c.6ae94",
-        "type": "switch",
-        "z": "80df3061.aa44d",
-        "name": "Contains @HAL9000",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "<@975714677042602004>",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 340,
-        "y": 40,
-        "wires": [
-            [
-                "2fcbab72e8b2b759"
-            ]
-        ]
-    },
-    {
-        "id": "18edb6ce599c72d2",
-        "type": "change",
-        "z": "80df3061.aa44d",
-        "name": "Sorry Dave",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"I'm sorry \" & author.username & \", I'm afraid I can't do that\"\t",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 450,
-        "y": 440,
-        "wires": [
-            [
-                "9bfaa376cd2217fe"
-            ]
-        ]
-    },
-    {
-        "id": "2fcbab72e8b2b759",
-        "type": "switch",
-        "z": "80df3061.aa44d",
+        "id": "0c891f4246718c31",
+        "type": "inject",
+        "z": "600e0f75f0d2b442",
         "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
+        "props": [
             {
-                "t": "cont",
-                "v": "help",
-                "vt": "str"
+                "p": "payload"
             },
             {
-                "t": "cont",
-                "v": "macs",
+                "p": "topic",
                 "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "unsubscribe",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "t": "else"
             }
         ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 5,
-        "x": 130,
-        "y": 340,
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
         "wires": [
             [
-                "6305ca789cf70892"
-            ],
-            [
-                "3bf413bcc75f79cc"
-            ],
-            [
-                "841af24d9cc4cd39"
-            ],
-            [
-                "9223108116f36378"
-            ],
-            [
-                "18edb6ce599c72d2"
+                "a40d90097e3462f2",
+                "d818c677afc02082",
+                "36329ca827718c53"
             ]
         ]
     },
     {
-        "id": "6305ca789cf70892",
+        "id": "a40d90097e3462f2",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Back Room Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_D84D05') ",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "84e5a2ee6ee9761b"
+            ]
+        ]
+    },
+    {
+        "id": "1650b6c26be0c2b0",
+        "type": "debug",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d818c677afc02082",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Outside Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_AA831A')",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "d34246a81feb63d9"
+            ]
+        ]
+    },
+    {
+        "id": "9f52681ce05a86dd",
+        "type": "join",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "0",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 850,
+        "y": 120,
+        "wires": [
+            [
+                "0dcd6bcaa34ca670",
+                "1650b6c26be0c2b0"
+            ]
+        ]
+    },
+    {
+        "id": "84e5a2ee6ee9761b",
         "type": "change",
-        "z": "80df3061.aa44d",
-        "name": "Help",
+        "z": "600e0f75f0d2b442",
+        "name": "",
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "topic",
                 "pt": "msg",
-                "to": "\"`HAL9000\\n(Heuristically programmed ALgorithmic computer)\\n\\nhelp:\\t\\t\\t\\t\\tThis help message\\nsubscribe topic:\\t\\t fff\\nunsubscribe topic:\\t   gddd`\"",
-                "tot": "json"
+                "to": "inside",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -982,233 +962,187 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 430,
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "9f52681ce05a86dd"
+            ]
+        ]
+    },
+    {
+        "id": "d34246a81feb63d9",
+        "type": "change",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "outside",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "9f52681ce05a86dd",
+                "6835eef9fd0ac96e"
+            ]
+        ]
+    },
+    {
+        "id": "0dcd6bcaa34ca670",
+        "type": "function",
+        "z": "600e0f75f0d2b442",
+        "name": "On Off Logic",
+        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 120,
+        "wires": [
+            [
+                "ddbdafbfc468e505"
+            ]
+        ]
+    },
+    {
+        "id": "ddbdafbfc468e505",
+        "type": "mqtt out",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "topic": "environment/tasmota_D84D05/cmnd/Power1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "36329ca827718c53",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Server Room Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_D846A6') ",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "6c4e8b6a6a0f7b54"
+            ]
+        ]
+    },
+    {
+        "id": "6c4e8b6a6a0f7b54",
+        "type": "change",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "inside",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "6835eef9fd0ac96e"
+            ]
+        ]
+    },
+    {
+        "id": "6835eef9fd0ac96e",
+        "type": "join",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 850,
         "y": 220,
         "wires": [
             [
-                "9bfaa376cd2217fe"
+                "b01c1ed225b1ad3a"
             ]
         ]
     },
     {
-        "id": "3bf413bcc75f79cc",
-        "type": "file in",
-        "z": "80df3061.aa44d",
-        "name": "Load MACs from file",
-        "filename": "macs",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "x": 480,
-        "y": 280,
-        "wires": [
-            [
-                "9bfaa376cd2217fe"
-            ]
-        ]
-    },
-    {
-        "id": "01ab99552dddf24b",
-        "type": "discordMessage",
-        "z": "80df3061.aa44d",
+        "id": "6911cb9105ec542d",
+        "type": "mqtt out",
+        "z": "600e0f75f0d2b442",
         "name": "",
-        "token": "5b117459cf47e677",
-        "x": 120,
-        "y": 80,
-        "wires": [
-            [
-                "b046f00c.6ae94",
-                "6e5bef5bcebef57e"
-            ]
-        ]
-    },
-    {
-        "id": "9bfaa376cd2217fe",
-        "type": "discordSendMessage",
-        "z": "80df3061.aa44d",
-        "name": "",
-        "channel": "",
-        "token": "5b117459cf47e677",
-        "x": 960,
+        "topic": "environment/tasmota_D846A6/cmnd/Power1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1330,
         "y": 220,
         "wires": []
     },
     {
-        "id": "6d3dac22b4d5912e",
-        "type": "mqtt in",
-        "z": "80df3061.aa44d",
-        "name": "",
-        "topic": "",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "c4d61c684681e109",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 1,
-        "x": 630,
-        "y": 360,
-        "wires": [
-            [
-                "0a6bdfae4eb52548"
-            ]
-        ]
-    },
-    {
-        "id": "841af24d9cc4cd39",
-        "type": "change",
-        "z": "80df3061.aa44d",
-        "name": "Unsubscribe",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "$trim($substringAfter(payload, \"unsubscribe\"))",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "action",
-                "pt": "msg",
-                "to": "unsubscribe",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"Unsubscribing from: \" &\t$trim($substringAfter(payload, \"unsubscribe\"))",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "channel",
-                "pt": "flow",
-                "to": "channel",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 340,
-        "wires": [
-            [
-                "6d3dac22b4d5912e",
-                "9bfaa376cd2217fe"
-            ]
-        ]
-    },
-    {
-        "id": "0a6bdfae4eb52548",
-        "type": "change",
-        "z": "80df3061.aa44d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "channel",
-                "pt": "msg",
-                "to": "channel",
-                "tot": "flow"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"MQTT:\\t\" & topic & \"\\t\" & payload",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 360,
-        "wires": [
-            [
-                "9bfaa376cd2217fe"
-            ]
-        ]
-    },
-    {
-        "id": "6e5bef5bcebef57e",
-        "type": "switch",
-        "z": "80df3061.aa44d",
-        "name": "Is DM",
-        "property": "channel.type",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "dm",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
+        "id": "b01c1ed225b1ad3a",
+        "type": "function",
+        "z": "600e0f75f0d2b442",
+        "name": "On Off Logic",
+        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
         "outputs": 1,
-        "x": 290,
-        "y": 120,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 220,
         "wires": [
             [
-                "2fcbab72e8b2b759"
-            ]
-        ]
-    },
-    {
-        "id": "9223108116f36378",
-        "type": "change",
-        "z": "80df3061.aa44d",
-        "name": "Subscribe",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "$trim($substringAfter(payload, \"subscribe\"))",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "action",
-                "pt": "msg",
-                "to": "subscribe",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"Subscribing to: \" &\t$trim($substringAfter(payload, \"subscribe\"))",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "channel",
-                "pt": "flow",
-                "to": "channel",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 340,
-        "y": 380,
-        "wires": [
-            [
-                "9bfaa376cd2217fe",
-                "6d3dac22b4d5912e"
+                "6911cb9105ec542d"
             ]
         ]
     }
