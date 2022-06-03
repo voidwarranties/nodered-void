@@ -21,6 +21,14 @@
         "info": ""
     },
     {
+        "id": "600e0f75f0d2b442",
+        "type": "tab",
+        "label": "Ventilate",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "550bc608.2b8b78",
         "type": "influxdb",
         "hostname": "10.98.71.71",
@@ -122,6 +130,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "3539746d.759aec",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 120,
         "y": 200,
@@ -817,5 +827,324 @@
         "x": 810,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "0c891f4246718c31",
+        "type": "inject",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "a40d90097e3462f2",
+                "d818c677afc02082",
+                "36329ca827718c53"
+            ]
+        ]
+    },
+    {
+        "id": "a40d90097e3462f2",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Back Room Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_D84D05') ",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "84e5a2ee6ee9761b"
+            ]
+        ]
+    },
+    {
+        "id": "1650b6c26be0c2b0",
+        "type": "debug",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d818c677afc02082",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Outside Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_AA831A')",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "d34246a81feb63d9"
+            ]
+        ]
+    },
+    {
+        "id": "9f52681ce05a86dd",
+        "type": "join",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "0",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 850,
+        "y": 120,
+        "wires": [
+            [
+                "0dcd6bcaa34ca670"
+            ]
+        ]
+    },
+    {
+        "id": "84e5a2ee6ee9761b",
+        "type": "change",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "inside",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "9f52681ce05a86dd"
+            ]
+        ]
+    },
+    {
+        "id": "d34246a81feb63d9",
+        "type": "change",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "outside",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "9f52681ce05a86dd",
+                "6835eef9fd0ac96e"
+            ]
+        ]
+    },
+    {
+        "id": "0dcd6bcaa34ca670",
+        "type": "function",
+        "z": "600e0f75f0d2b442",
+        "name": "On Off Logic",
+        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 120,
+        "wires": [
+            [
+                "ddbdafbfc468e505",
+                "1650b6c26be0c2b0"
+            ]
+        ]
+    },
+    {
+        "id": "ddbdafbfc468e505",
+        "type": "mqtt out",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "topic": "environment/tasmota_D84D05/cmnd/Power1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "36329ca827718c53",
+        "type": "influxdb in",
+        "z": "600e0f75f0d2b442",
+        "influxdb": "550bc608.2b8b78",
+        "name": "Server Room Temperature",
+        "query": "SELECT last(\"temperature\") FROM \"dht\" WHERE (\"name\" = 'tasmota_D846A6') ",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "6c4e8b6a6a0f7b54"
+            ]
+        ]
+    },
+    {
+        "id": "6c4e8b6a6a0f7b54",
+        "type": "change",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "inside",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "6835eef9fd0ac96e"
+            ]
+        ]
+    },
+    {
+        "id": "6835eef9fd0ac96e",
+        "type": "join",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "0",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 850,
+        "y": 220,
+        "wires": [
+            [
+                "b01c1ed225b1ad3a"
+            ]
+        ]
+    },
+    {
+        "id": "6911cb9105ec542d",
+        "type": "mqtt out",
+        "z": "600e0f75f0d2b442",
+        "name": "",
+        "topic": "environment/tasmota_D846A6/cmnd/Power1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1330,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b01c1ed225b1ad3a",
+        "type": "function",
+        "z": "600e0f75f0d2b442",
+        "name": "On Off Logic",
+        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 220,
+        "wires": [
+            [
+                "6911cb9105ec542d",
+                "1650b6c26be0c2b0"
+            ]
+        ]
     }
 ]
