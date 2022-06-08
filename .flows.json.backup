@@ -938,8 +938,7 @@
         "y": 120,
         "wires": [
             [
-                "0dcd6bcaa34ca670",
-                "1650b6c26be0c2b0"
+                "0dcd6bcaa34ca670"
             ]
         ]
     },
@@ -1013,7 +1012,8 @@
         "y": 120,
         "wires": [
             [
-                "ddbdafbfc468e505"
+                "ddbdafbfc468e505",
+                "1650b6c26be0c2b0"
             ]
         ]
     },
@@ -1093,9 +1093,9 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "2",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "0",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1142,7 +1142,8 @@
         "y": 220,
         "wires": [
             [
-                "6911cb9105ec542d"
+                "6911cb9105ec542d",
+                "1650b6c26be0c2b0"
             ]
         ]
     }
