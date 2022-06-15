@@ -1046,7 +1046,7 @@
         "type": "function",
         "z": "600e0f75f0d2b442",
         "name": "On Off Logic",
-        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
+        "func": "msg.payload = msg.payload.outside[0].last - 2 < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
