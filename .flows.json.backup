@@ -3,7 +3,7 @@
         "id": "5c7a661f544dc51d",
         "type": "tab",
         "label": "Space State - Temp & Humidity",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -17,14 +17,14 @@
         "id": "32cb8da3.eeffc2",
         "type": "tab",
         "label": "Sun Events",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "600e0f75f0d2b442",
         "type": "tab",
         "label": "Ventilate",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -71,6 +71,13 @@
         "id": "88dfa43f7c3eb225",
         "type": "Cache",
         "name": "cache",
+        "defaultTtl": "",
+        "checkPeriod": ""
+    },
+    {
+        "id": "b30fd124b6dc35b8",
+        "type": "Cache",
+        "name": "deduplicate",
         "defaultTtl": "",
         "checkPeriod": ""
     },
@@ -248,7 +255,7 @@
         "retain": "false",
         "broker": "3539746d.759aec",
         "x": 860,
-        "y": 60,
+        "y": 280,
         "wires": []
     },
     {
@@ -261,7 +268,7 @@
         "retain": "false",
         "broker": "3539746d.759aec",
         "x": 860,
-        "y": 300,
+        "y": 520,
         "wires": []
     },
     {
@@ -275,13 +282,15 @@
         "broker": "3539746d.759aec",
         "inputs": 0,
         "x": 120,
-        "y": 60,
+        "y": 280,
         "wires": [
             [
                 "3c7e383b6bbc7785",
                 "2ee6eb8a0a213a74",
                 "3134f2063674370f",
-                "01e5fde574225c69"
+                "01e5fde574225c69",
+                "881a120c69d9322e",
+                "b200478e1f81f6dc"
             ]
         ]
     },
@@ -305,10 +314,10 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 60,
+        "y": 280,
         "wires": [
             [
-                "c89013aebab0e147"
+                "ea0ec2e871a7676c"
             ]
         ]
     },
@@ -332,7 +341,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 300,
+        "y": 520,
         "wires": [
             [
                 "328c1e27e1ebd117"
@@ -350,7 +359,7 @@
         "sendError": false,
         "encoding": "none",
         "x": 460,
-        "y": 500,
+        "y": 720,
         "wires": [
             [
                 "8999d558893bc2f0"
@@ -368,7 +377,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 390,
-        "y": 440,
+        "y": 660,
         "wires": [
             [
                 "2729e191657e0f94"
@@ -397,7 +406,7 @@
         "payload": "{\"barputer01\":\"70:85:c2:3a:61:94\",\"springsteen\":\"34:c9:3d:2e:4b:90\",\"stargazer\":\"ec:a8:6b:8b:e6:b0\"}",
         "payloadType": "json",
         "x": 150,
-        "y": 440,
+        "y": 660,
         "wires": [
             [
                 "f23d872eadfbfddf"
@@ -418,7 +427,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 440,
+        "y": 660,
         "wires": []
     },
     {
@@ -433,7 +442,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 970,
-        "y": 440,
+        "y": 660,
         "wires": []
     },
     {
@@ -445,7 +454,7 @@
         "action": "",
         "pretty": false,
         "x": 650,
-        "y": 500,
+        "y": 720,
         "wires": [
             [
                 "17f455359fdded2c"
@@ -463,7 +472,7 @@
         "interval": 100,
         "name": "",
         "x": 990,
-        "y": 500,
+        "y": 720,
         "wires": []
     },
     {
@@ -486,7 +495,7 @@
         "to": "",
         "reg": false,
         "x": 810,
-        "y": 500,
+        "y": 720,
         "wires": [
             [
                 "9be94bddb27f11e3",
@@ -505,7 +514,7 @@
         "broker": "3539746d.759aec",
         "inputs": 0,
         "x": 110,
-        "y": 500,
+        "y": 720,
         "wires": [
             [
                 "c0cff6626d30a21b"
@@ -530,7 +539,7 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 500,
+        "y": 720,
         "wires": [
             [
                 "3758950e49922b9c"
@@ -552,7 +561,7 @@
         "expiry": "",
         "broker": "3539746d.759aec",
         "x": 940,
-        "y": 120,
+        "y": 340,
         "wires": []
     },
     {
@@ -570,7 +579,7 @@
         "expiry": "",
         "broker": "3539746d.759aec",
         "x": 940,
-        "y": 240,
+        "y": 460,
         "wires": []
     },
     {
@@ -587,7 +596,7 @@
         "ttlProperty": "",
         "useString": false,
         "x": 510,
-        "y": 180,
+        "y": 400,
         "wires": []
     },
     {
@@ -624,7 +633,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 120,
+        "y": 340,
         "wires": [
             [
                 "0167714cb4ec0fdf",
@@ -659,7 +668,7 @@
         "to": "",
         "reg": false,
         "x": 390,
-        "y": 240,
+        "y": 460,
         "wires": [
             [
                 "70c5cceefad4cd0b"
@@ -679,11 +688,9 @@
         "useString": false,
         "outputs": 1,
         "x": 510,
-        "y": 120,
+        "y": 340,
         "wires": [
-            [
-                "4a40fddf1ecd06b9"
-            ]
+            []
         ]
     },
     {
@@ -706,7 +713,7 @@
         "to": "",
         "reg": false,
         "x": 660,
-        "y": 120,
+        "y": 340,
         "wires": [
             [
                 "855181d3a30999a2",
@@ -715,7 +722,50 @@
         ]
     },
     {
-        "id": "c89013aebab0e147",
+        "id": "ea0ec2e871a7676c",
+        "type": "switch",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "ba577bcc03b129d4"
+            ]
+        ]
+    },
+    {
+        "id": "ba577bcc03b129d4",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "stripbar/cmnd/POWER1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "881a120c69d9322e",
         "type": "debug",
         "z": "6ae9ae02ccd4803a",
         "name": "",
@@ -727,8 +777,175 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 510,
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a6b7b7e95a358615",
+        "type": "Cache in",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "cache": "b30fd124b6dc35b8",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "spacestate",
+        "useString": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "afef6ce329640149"
+            ],
+            [
+                "843ba02a02dadcb2"
+            ]
+        ]
+    },
+    {
+        "id": "b200478e1f81f6dc",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set cache topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "a6b7b7e95a358615"
+            ]
+        ]
+    },
+    {
+        "id": "843ba02a02dadcb2",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "null handling",
+        "rules": [
+            {
+                "t": "set",
+                "p": "spacestate",
+                "pt": "msg",
+                "to": "payload.state",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "4c9741754bff9abf",
+                "1409a571c9eb8c71"
+            ]
+        ]
+    },
+    {
+        "id": "afef6ce329640149",
+        "type": "switch",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "property": "payload.state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "spacestate",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
         "y": 60,
+        "wires": [
+            [
+                "4c9741754bff9abf",
+                "1409a571c9eb8c71"
+            ]
+        ]
+    },
+    {
+        "id": "4c9741754bff9abf",
+        "type": "Cache out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "cache": "b30fd124b6dc35b8",
+        "keyType": "msg",
+        "keyProperty": "topic",
+        "valueType": "msg",
+        "valueProperty": "payload.state",
+        "ttlType": "msg",
+        "ttlProperty": "",
+        "useString": false,
+        "x": 850,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1409a571c9eb8c71",
+        "type": "change",
+        "z": "6ae9ae02ccd4803a",
+        "name": "Set spacestate",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state ? \"open\" : \"closed\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 140,
+        "wires": [
+            [
+                "5d2167576d248fe1"
+            ]
+        ]
+    },
+    {
+        "id": "5d2167576d248fe1",
+        "type": "mqtt out",
+        "z": "6ae9ae02ccd4803a",
+        "name": "",
+        "topic": "voidwarranties/spacestate",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1110,
+        "y": 140,
         "wires": []
     },
     {
@@ -1020,7 +1237,7 @@
         "type": "function",
         "z": "600e0f75f0d2b442",
         "name": "On Off Logic",
-        "func": "msg.payload = msg.payload.outside[0].last < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
+        "func": "msg.payload = msg.payload.outside[0].last - 2 < msg.payload.inside[0].last ? \"on\" : \"off\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
