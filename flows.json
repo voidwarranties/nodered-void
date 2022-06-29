@@ -3,14 +3,14 @@
         "id": "5c7a661f544dc51d",
         "type": "tab",
         "label": "Space State - Temp & Humidity",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "6ae9ae02ccd4803a",
         "type": "tab",
         "label": "Space State - Open/Close",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -24,7 +24,7 @@
         "id": "600e0f75f0d2b442",
         "type": "tab",
         "label": "Ventilate",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -954,8 +954,8 @@
         "once": true,
         "onceDelay": "10",
         "topic": "",
-        "x": 170,
-        "y": 60,
+        "x": 190,
+        "y": 160,
         "wires": [
             [
                 "bb453a1268c52e68"
@@ -966,15 +966,16 @@
         "id": "bb453a1268c52e68",
         "type": "sun events",
         "z": "32cb8da3.eeffc2",
-        "testmode": false,
+        "testmode": true,
         "verbose": "N",
         "topic": "",
         "name": "",
-        "x": 390,
-        "y": 60,
+        "x": 410,
+        "y": 160,
         "wires": [
             [
-                "ed35eb83075dc9e7"
+                "ed35eb83075dc9e7",
+                "5d3b91d67c19c68c"
             ]
         ]
     },
@@ -991,8 +992,8 @@
         "ttlType": "msg",
         "ttlProperty": "",
         "useString": false,
-        "x": 790,
-        "y": 60,
+        "x": 810,
+        "y": 40,
         "wires": []
     },
     {
@@ -1021,12 +1022,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 60,
+        "x": 600,
+        "y": 160,
         "wires": [
             [
                 "4dabf8b786444e67",
-                "3ac7f1eaa23ce25c"
+                "3ac7f1eaa23ce25c",
+                "c292ca470881aa1b"
             ]
         ]
     },
@@ -1043,9 +1045,99 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
-        "y": 120,
+        "x": 830,
+        "y": 100,
         "wires": []
+    },
+    {
+        "id": "f42c99de504888b8",
+        "type": "mqtt out",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "topic": "outside/timeofday",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 850,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "72e592f4803514d2",
+        "type": "mqtt out",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "topic": "outside/daynight",
+        "qos": "",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 1080,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5d3b91d67c19c68c",
+        "type": "change",
+        "z": "32cb8da3.eeffc2",
+        "name": "Set sunevent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sunevent",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 220,
+        "wires": [
+            [
+                "f42c99de504888b8"
+            ]
+        ]
+    },
+    {
+        "id": "c292ca470881aa1b",
+        "type": "change",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload ? \"night\" : \"day\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 160,
+        "wires": [
+            [
+                "72e592f4803514d2"
+            ]
+        ]
     },
     {
         "id": "0c891f4246718c31",
