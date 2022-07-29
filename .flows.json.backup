@@ -1028,7 +1028,7 @@
             [
                 "4dabf8b786444e67",
                 "3ac7f1eaa23ce25c",
-                "72e592f4803514d2"
+                "c292ca470881aa1b"
             ]
         ]
     },
@@ -1081,7 +1081,7 @@
         "correl": "",
         "expiry": "",
         "broker": "3539746d.759aec",
-        "x": 840,
+        "x": 1080,
         "y": 160,
         "wires": []
     },
@@ -1109,6 +1109,33 @@
         "wires": [
             [
                 "f42c99de504888b8"
+            ]
+        ]
+    },
+    {
+        "id": "c292ca470881aa1b",
+        "type": "change",
+        "z": "32cb8da3.eeffc2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload ? \"night\" : \"day\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 160,
+        "wires": [
+            [
+                "72e592f4803514d2"
             ]
         ]
     },
