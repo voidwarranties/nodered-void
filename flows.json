@@ -29,6 +29,14 @@
         "env": []
     },
     {
+        "id": "5d8599b30e615276",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "550bc608.2b8b78",
         "type": "influxdb",
         "hostname": "10.98.71.71",
@@ -80,6 +88,133 @@
         "name": "deduplicate",
         "defaultTtl": "",
         "checkPeriod": ""
+    },
+    {
+        "id": "7154669f09dd211a",
+        "type": "ui_group",
+        "name": "Kitchen",
+        "tab": "eafd4daa1a12c062",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bee670c471a0b25c",
+        "type": "ui_group",
+        "name": "Outside",
+        "tab": "eafd4daa1a12c062",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "eafd4daa1a12c062",
+        "type": "ui_tab",
+        "name": "VoidWarranties",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "6b234f36d5f4940e",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
     },
     {
         "id": "2863b1fc.6af24e",
@@ -1495,5 +1630,189 @@
                 "1650b6c26be0c2b0"
             ]
         ]
+    },
+    {
+        "id": "bf77e9af5391f604",
+        "type": "ui_button",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "group": "7154669f09dd211a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stripbar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "TOGGLE",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "71c8b37115d21118"
+            ]
+        ]
+    },
+    {
+        "id": "71c8b37115d21118",
+        "type": "mqtt out",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "topic": "stripbar/cmnd/POWER1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 470,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4968eeee150c2d37",
+        "type": "ui_button",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "group": "bee670c471a0b25c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Light Bulbs",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "TOGGLE",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "737cc45efa51b428"
+            ]
+        ]
+    },
+    {
+        "id": "3ac0558dde65c146",
+        "type": "ui_button",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "group": "bee670c471a0b25c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "LEDs Vertical",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "TOGGLE",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "394b608a9a09e657"
+            ]
+        ]
+    },
+    {
+        "id": "394b608a9a09e657",
+        "type": "mqtt out",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 540,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "737cc45efa51b428",
+        "type": "mqtt out",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "topic": "environment/tasmota_AA831A/cmnd/POWER4",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 540,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "507b9a98685549ec",
+        "type": "ui_button",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "group": "7154669f09dd211a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stargazer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "poweron",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "dffec45677a0deb9"
+            ]
+        ]
+    },
+    {
+        "id": "dffec45677a0deb9",
+        "type": "mqtt out",
+        "z": "5d8599b30e615276",
+        "name": "",
+        "topic": "computers/stargazer",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3539746d.759aec",
+        "x": 460,
+        "y": 260,
+        "wires": []
     }
 ]
