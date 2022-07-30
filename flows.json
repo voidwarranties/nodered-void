@@ -423,7 +423,7 @@
         "retain": "false",
         "broker": "3539746d.759aec",
         "x": 860,
-        "y": 100,
+        "y": 220,
         "wires": []
     },
     {
@@ -885,9 +885,7 @@
         "wires": [
             [
                 "855181d3a30999a2",
-                "c5105954f0706ba3",
-                "bb42280d4430c6e5",
-                "29f4d555245d5e5b"
+                "c5105954f0706ba3"
             ]
         ]
     },
@@ -912,7 +910,9 @@
         "y": 40,
         "wires": [
             [
-                "ba577bcc03b129d4"
+                "ba577bcc03b129d4",
+                "29f4d555245d5e5b",
+                "bb42280d4430c6e5"
             ]
         ]
     },
@@ -949,7 +949,7 @@
         "expiry": "",
         "broker": "3539746d.759aec",
         "x": 940,
-        "y": 160,
+        "y": 100,
         "wires": []
     },
     {
@@ -967,7 +967,7 @@
         "expiry": "",
         "broker": "3539746d.759aec",
         "x": 940,
-        "y": 220,
+        "y": 160,
         "wires": []
     },
     {
@@ -1004,7 +1004,7 @@
         "id": "bb453a1268c52e68",
         "type": "sun events",
         "z": "32cb8da3.eeffc2",
-        "testmode": true,
+        "testmode": false,
         "verbose": "N",
         "topic": "",
         "name": "",
