@@ -1693,7 +1693,7 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
+        "payload": "TOGGLE",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
